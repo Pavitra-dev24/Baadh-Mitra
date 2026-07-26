@@ -1,0 +1,32 @@
+databases:
+  - name: baadh-mitra-db
+    plan: free
+    databaseName: baadh_mitra
+    user: baadh_mitra
+
+services:
+  - type: web
+    name: baadh-mitra-api
+    runtime: python
+    plan: free
+    rootDir: backend
+    buildCommand: "pip install -r requirements.txt"
+    preDeployCommand: "python -m app.seed"
+    startCommand: "uvicorn app.main:app --host 0.0.0.0 --port $PORT"
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.3"
+        # Pinned explicitly: Render's default for newly-created services is
+        # now 3.14.3 (changed Feb 2026), but this project's pinned deps
+        # (pydantic 2.9.2, psycopg2-binary 2.9.9) were built and tested
+        # against 3.12.3. Bump this deliberately if you upgrade deps to
+        # versions confirmed to support a newer Python.
+      - key: DATABASE_URL
+        fromDatabase:
+          name: baadh-mitra-db
+          property: connectionString
+      - key: ALLOWED_ORIGINS
+        value: "http://localhost:5173"
+        # After you deploy the frontend to Vercel, update this to your Vercel
+        # URL (comma-separated if you keep localhost too), e.g.:
+        # https://baadh-mitra.vercel.app,http://localhost:5173
