@@ -3,6 +3,7 @@ databases:
     plan: free
     databaseName: baadh_mitra
     user: baadh_mitra
+    region: singapore
 
 services:
   - type: web
@@ -12,6 +13,7 @@ services:
     rootDir: backend
     buildCommand: "pip install -r requirements.txt"
     startCommand: "python -m app.seed && uvicorn app.main:app --host 0.0.0.0 --port $PORT"
+    region: singapore
     envVars:
       - key: PYTHON_VERSION
         value: "3.12.3"
