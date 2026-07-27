@@ -7,17 +7,12 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply bg-paper text-ink font-body antialiased;
+    @apply bg-canvas text-ink font-sans antialiased;
   }
+  /* Carbon's signature focus treatment: 2px primary-blue ring, no soft glow */
   *:focus-visible {
-    outline: 2px solid theme('colors.brick');
+    outline: 2px solid theme('colors.primary');
     outline-offset: 2px;
-  }
-}
-
-@layer components {
-  .input {
-    @apply w-full rounded-md border border-line bg-white px-3 py-1.5 text-sm text-ink placeholder:text-ink/30 focus:border-teal focus:outline-none;
   }
 }
 
@@ -26,5 +21,66 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+@layer components {
+  /* Carbon text-input: surface-1 fill, no border except a bottom hairline that
+     becomes a 2px primary underline on focus. Square corners throughout. */
+  .input {
+    @apply w-full rounded-none bg-surface-1 text-ink text-body px-md py-[11px]
+           border-0 border-b border-hairline
+           placeholder:text-ink-subtle
+           focus:outline-none focus:border-b-2 focus:border-primary;
+  }
+
+  /* Button variants, transcribed from DESIGN.md `components:` block */
+  .btn-primary {
+    @apply rounded-none bg-primary text-on-primary text-button font-normal
+           px-md py-[12px] hover:bg-blue-hover active:bg-blue-80
+           disabled:opacity-50 disabled:cursor-not-allowed transition-colors;
+  }
+  .btn-secondary {
+    @apply rounded-none bg-ink text-inverse-ink text-button font-normal
+           px-md py-[12px] hover:bg-inverse-surface-1
+           disabled:opacity-50 disabled:cursor-not-allowed transition-colors;
+  }
+  .btn-tertiary {
+    @apply rounded-none bg-canvas text-primary text-button font-normal
+           border border-primary px-md py-[12px] hover:bg-surface-1
+           disabled:opacity-50 disabled:cursor-not-allowed transition-colors;
+  }
+  .btn-ghost {
+    @apply rounded-none bg-transparent text-primary text-button font-normal
+           hover:text-blue-60 disabled:opacity-50 transition-colors;
+  }
+
+  /* Small in-row action buttons for the checklist (not in DESIGN.md verbatim -
+     it documents richer product components as a "known gap" - so these
+     follow the same bordered/flat/no-fill logic as button-tertiary, just
+     compact, and recolored per semantic token for the action's meaning). */
+  .btn-tag-success {
+    @apply rounded-none border border-success text-success text-caption
+           px-xs py-[3px] hover:bg-success/10 transition-colors;
+  }
+  .btn-tag-neutral {
+    @apply rounded-none border border-hairline text-ink-muted text-caption
+           px-xs py-[3px] hover:bg-surface-1 transition-colors;
+  }
+
+  /* Carbon-style status tag: pale tint fill, colored border and text.
+     DESIGN.md documents rounded.xs (2px) as the one exception to flat-square
+     for "small badges" - used here rather than rounded-none. */
+  .tag {
+    @apply inline-flex items-center rounded-xs border text-caption px-xs py-[1px];
+  }
+  .tag-neutral {
+    @apply tag bg-surface-1 border-hairline text-ink-muted;
+  }
+  .tag-warning {
+    @apply tag border-warning text-[#8d6605] bg-warning/10;
+  }
+  .tag-error {
+    @apply tag border-error text-error bg-error/10;
   }
 }

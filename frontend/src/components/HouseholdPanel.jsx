@@ -37,22 +37,19 @@ export default function HouseholdPanel({ households, onCreate, onDelete }) {
   };
 
   return (
-    <div className="rounded-lg border border-line bg-white/60 flex flex-col h-full">
-      <div className="flex items-center justify-between px-5 py-4 border-b border-line">
-        <h2 className="font-display text-base">
-          Households <span className="text-ink/40 font-mono text-sm">({households.length})</span>
+    <div className="rounded-none bg-canvas border border-hairline flex flex-col h-full">
+      <div className="flex items-center justify-between px-lg py-md border-b border-hairline">
+        <h2 className="text-card-title font-normal text-ink">
+          Households <span className="text-ink-subtle font-mono text-body-sm">({households.length})</span>
         </h2>
-        <button
-          onClick={() => setShowForm((s) => !s)}
-          className="text-sm font-medium text-teal hover:underline"
-        >
+        <button onClick={() => setShowForm((s) => !s)} className="btn-ghost">
           {showForm ? "Cancel" : "+ Add household"}
         </button>
       </div>
 
       {showForm && (
-        <form onSubmit={submit} className="px-5 py-4 border-b border-line bg-paper/60 space-y-3">
-          <div className="grid grid-cols-2 gap-3">
+        <form onSubmit={submit} className="px-lg py-md border-b border-hairline bg-surface-1 space-y-sm">
+          <div className="grid grid-cols-2 gap-sm">
             <Field label="Head of household">
               <input
                 required
@@ -83,7 +80,7 @@ export default function HouseholdPanel({ households, onCreate, onDelete }) {
               placeholder="e.g. near Shiv Mandir, behind the haat"
             />
           </Field>
-          <div className="grid grid-cols-3 gap-3">
+          <div className="grid grid-cols-3 gap-sm">
             <Toggle
               label="Elderly-only"
               checked={form.elderly_only}
@@ -109,38 +106,36 @@ export default function HouseholdPanel({ households, onCreate, onDelete }) {
               className="input w-24"
             />
           </Field>
-          <button
-            type="submit"
-            disabled={saving}
-            className="rounded-md bg-teal text-paper px-4 py-2 text-sm font-medium hover:opacity-90 disabled:opacity-50"
-          >
+          <button type="submit" disabled={saving} className="btn-primary">
             {saving ? "Saving…" : "Save household"}
           </button>
         </form>
       )}
 
-      <ul className="divide-y divide-line overflow-y-auto max-h-[480px]">
+      <ul className="divide-y divide-hairline overflow-y-auto max-h-[480px]">
         {households.length === 0 && !showForm && (
-          <li className="px-5 py-8 text-sm text-ink/50 text-center">
+          <li className="px-lg py-xl text-body-sm text-ink-muted text-center">
             No households mapped yet. Add the first one to start building this district's roster.
           </li>
         )}
         {households.map((h) => (
-          <li key={h.id} className="px-5 py-3 flex items-start justify-between gap-3">
+          <li key={h.id} className="px-lg py-sm flex items-start justify-between gap-sm">
             <div>
-              <p className="font-medium text-sm">{h.head_name}</p>
-              <p className="text-xs text-ink/60">{h.landmark_chain}</p>
-              <div className="flex flex-wrap gap-1.5 mt-1.5">
-                <Tag>{ELEVATION_LABELS[h.elevation_band]}</Tag>
-                {h.elderly_only && <Tag tone="brick">Elderly-only</Tag>}
-                {!h.has_smartphone && <Tag tone="amber">No smartphone</Tag>}
-                {h.mobility_limited && <Tag tone="brick">Limited mobility</Tag>}
-                <Tag>{h.resident_count} resident{h.resident_count > 1 ? "s" : ""}</Tag>
+              <p className="text-body font-normal text-ink">{h.head_name}</p>
+              <p className="text-body-sm text-ink-muted">{h.landmark_chain}</p>
+              <div className="flex flex-wrap gap-xxs mt-xs">
+                <span className="tag-neutral">{ELEVATION_LABELS[h.elevation_band]}</span>
+                {h.elderly_only && <span className="tag-error">Elderly-only</span>}
+                {!h.has_smartphone && <span className="tag-warning">No smartphone</span>}
+                {h.mobility_limited && <span className="tag-error">Limited mobility</span>}
+                <span className="tag-neutral">
+                  {h.resident_count} resident{h.resident_count > 1 ? "s" : ""}
+                </span>
               </div>
             </div>
             <button
               onClick={() => onDelete(h.id)}
-              className="text-xs text-ink/40 hover:text-brick shrink-0"
+              className="text-caption text-ink-subtle hover:text-error shrink-0"
               title="Remove household"
             >
               Remove
@@ -155,7 +150,7 @@ export default function HouseholdPanel({ households, onCreate, onDelete }) {
 function Field({ label, children }) {
   return (
     <label className="block">
-      <span className="block text-xs font-medium text-ink/60 mb-1">{label}</span>
+      <span className="block text-caption text-ink-muted mb-xxs">{label}</span>
       {children}
     </label>
   );
@@ -163,30 +158,14 @@ function Field({ label, children }) {
 
 function Toggle({ label, checked, onChange }) {
   return (
-    <label className="flex items-center gap-2 text-xs cursor-pointer select-none">
+    <label className="flex items-center gap-xs text-caption text-ink cursor-pointer select-none">
       <input
         type="checkbox"
         checked={checked}
         onChange={(e) => onChange(e.target.checked)}
-        className="accent-teal"
+        className="accent-primary"
       />
       {label}
     </label>
-  );
-}
-
-function Tag({ children, tone }) {
-  const toneClasses = {
-    brick: "bg-brick/10 text-brick border-brick/30",
-    amber: "bg-amber/10 text-amber border-amber/30",
-  };
-  return (
-    <span
-      className={`text-[11px] px-1.5 py-0.5 rounded border ${
-        toneClasses[tone] || "bg-ink/5 text-ink/60 border-ink/10"
-      }`}
-    >
-      {children}
-    </span>
   );
 }

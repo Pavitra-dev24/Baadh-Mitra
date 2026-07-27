@@ -1,22 +1,71 @@
 /** @type {import('tailwindcss').Config} */
+// Design tokens transcribed from DESIGN.md (IBM Carbon Design System).
 export default {
   content: ["./index.html", "./src/**/*.{js,jsx}"],
   theme: {
     extend: {
       colors: {
-        paper: "#F1EDE1",
-        ink: "#1F2420",
-        slate: "#1B2A38",
-        amber: "#D98E32",
-        brick: "#B23A2E",
-        teal: "#2F7A6B",
-        watchblue: "#5B7A93",
-        line: "#DBD4C1",
+        // Brand & accent
+        primary: "#0f62fe",
+        "on-primary": "#ffffff",
+        "blue-60": "#0043ce",
+        "blue-80": "#002d9c",
+        "blue-hover": "#0050e6",
+        // Surface
+        canvas: "#ffffff",
+        "surface-1": "#f4f4f4",
+        "surface-2": "#e0e0e0",
+        hairline: "#e0e0e0",
+        "hairline-strong": "#161616",
+        "inverse-canvas": "#161616",
+        "inverse-surface-1": "#262626",
+        "inverse-ink": "#ffffff",
+        "inverse-ink-muted": "#c6c6c6",
+        // Text
+        ink: "#161616",
+        "ink-muted": "#525252",
+        "ink-subtle": "#8c8c8c",
+        // Semantic
+        success: "#24a148",
+        warning: "#f1c21b",
+        error: "#da1e28",
+        info: "#0f62fe",
       },
       fontFamily: {
-        display: ["'Roboto Slab'", "serif"],
-        body: ["Inter", "sans-serif"],
+        sans: ["'IBM Plex Sans'", "'Helvetica Neue'", "Arial", "sans-serif"],
         mono: ["'IBM Plex Mono'", "monospace"],
+      },
+      fontSize: {
+        // [size, { lineHeight, letterSpacing }] — pair with font-light/normal/semibold in markup per DESIGN.md's weight column
+        "display-xl": ["76px", { lineHeight: "1.17", letterSpacing: "-0.5px" }],
+        "display-lg": ["60px", { lineHeight: "1.17", letterSpacing: "-0.4px" }],
+        "display-md": ["42px", { lineHeight: "1.20", letterSpacing: "0px" }],
+        headline: ["32px", { lineHeight: "1.25", letterSpacing: "0px" }],
+        "card-title": ["24px", { lineHeight: "1.33", letterSpacing: "0px" }],
+        subhead: ["20px", { lineHeight: "1.40", letterSpacing: "0px" }],
+        "body-lg": ["18px", { lineHeight: "1.50", letterSpacing: "0px" }],
+        body: ["16px", { lineHeight: "1.50", letterSpacing: "0.16px" }],
+        "body-sm": ["14px", { lineHeight: "1.29", letterSpacing: "0.16px" }],
+        "body-emphasis": ["14px", { lineHeight: "1.29", letterSpacing: "0.16px" }],
+        caption: ["12px", { lineHeight: "1.33", letterSpacing: "0.32px" }],
+        button: ["14px", { lineHeight: "1.29", letterSpacing: "0.16px" }],
+      },
+      borderRadius: {
+        none: "0px",
+        xs: "2px",
+        sm: "4px",
+        md: "6px",
+        lg: "8px",
+        pill: "9999px",
+      },
+      spacing: {
+        xxs: "4px",
+        xs: "8px",
+        sm: "12px",
+        md: "16px",
+        lg: "24px",
+        xl: "32px",
+        xxl: "48px",
       },
     },
   },

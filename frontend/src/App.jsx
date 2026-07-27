@@ -17,7 +17,6 @@ export default function App() {
   const [regenerating, setRegenerating] = useState(false);
   const [error, setError] = useState(null);
 
-  // Initial load
   useEffect(() => {
     api
       .listDistricts()
@@ -117,12 +116,15 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-paper">
-      <header className="bg-slate text-paper relative">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+    <div className="min-h-screen bg-canvas flex flex-col">
+      {/* Carbon's "UI Shell" header (used across IBM Cloud / product consoles) -
+          dark inverse-canvas bar, not the light marketing top-nav, since this
+          app is a product surface rather than a marketing page. */}
+      <header className="bg-inverse-canvas text-inverse-ink relative">
+        <div className="max-w-6xl mx-auto px-lg py-md flex items-center justify-between">
           <div>
-            <h1 className="font-display text-xl tracking-tight">Baadh Mitra</h1>
-            <p className="text-xs text-paper/50 font-mono mt-0.5">
+            <h1 className="text-subhead font-normal tracking-tight">Baadh Mitra</h1>
+            <p className="text-caption text-inverse-ink-muted font-mono mt-xxs">
               flood relay coordinator · volunteer edition
             </p>
           </div>
@@ -137,22 +139,25 @@ export default function App() {
         </div>
       </header>
 
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 py-6 space-y-6">
+      <main className="max-w-6xl mx-auto px-lg py-lg space-y-lg flex-1 w-full">
         {error && (
-          <div className="rounded-lg border border-brick/40 bg-brick/5 text-brick text-sm px-4 py-3">
+          <div
+            className="rounded-none bg-canvas border border-hairline p-md text-body-sm text-ink"
+            style={{ borderLeft: "4px solid #da1e28" }}
+          >
             Couldn't reach the Baadh Mitra API ({error}). Confirm VITE_API_URL points at a running
             backend.
           </div>
         )}
 
         {loading && !error && (
-          <p className="text-sm text-ink/50 font-mono">Loading district data…</p>
+          <p className="text-body-sm text-ink-muted font-mono">Loading district data…</p>
         )}
 
         {!loading && !error && districts.length === 0 && (
-          <div className="rounded-lg border border-line bg-white/60 p-8 text-center">
-            <p className="font-display text-lg">No areas set up yet</p>
-            <p className="text-sm text-ink/60 mt-1">
+          <div className="rounded-none border border-hairline bg-canvas p-xl text-center">
+            <p className="text-card-title font-normal text-ink">No areas set up yet</p>
+            <p className="text-body-sm text-ink-muted mt-xs">
               Run the backend seed script (<code className="font-mono">python -m app.seed</code>)
               for demo data, or add an area from the header once one exists.
             </p>
@@ -163,7 +168,7 @@ export default function App() {
           <>
             <AlertBanner alert={alert} onSimulate={handleSimulate} simulating={simulating} />
 
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 gap-lg">
               <HouseholdPanel
                 households={households}
                 onCreate={handleCreateHousehold}
@@ -179,12 +184,15 @@ export default function App() {
             </div>
           </>
         )}
-
-        <footer className="text-center text-xs text-ink/40 font-mono pt-4">
-          Portfolio project · flood-alert data is simulated, not a live Google Flood Hub feed ·
-          not affiliated with Google
-        </footer>
       </main>
+
+      {/* Carbon footer: the one other surface, besides the header shell, that
+          inverts to charcoal - kept slim since there's a single disclaimer
+          line rather than a multi-column marketing footer. */}
+      <footer className="bg-inverse-canvas text-inverse-ink-muted text-center text-caption font-mono py-md px-lg">
+        Portfolio project · flood-alert data is simulated, not a live Google Flood Hub feed ·
+        not affiliated with Google
+      </footer>
     </div>
   );
 }

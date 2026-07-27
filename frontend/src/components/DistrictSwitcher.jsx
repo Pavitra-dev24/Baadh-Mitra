@@ -12,11 +12,12 @@ export default function DistrictSwitcher({ districts, activeId, onSelect, onCrea
   };
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-sm">
       <select
         value={activeId || ""}
         onChange={(e) => onSelect(e.target.value)}
-        className="bg-transparent border border-paper/30 text-paper rounded-md px-2 py-1.5 text-sm font-medium focus:outline-none focus:border-amber"
+        className="rounded-none bg-transparent border border-inverse-ink-muted/40 text-inverse-ink
+                   text-body-sm px-sm py-xs focus:outline-none focus:border-primary"
       >
         {districts.map((d) => (
           <option key={d.id} value={d.id} className="text-ink">
@@ -26,7 +27,7 @@ export default function DistrictSwitcher({ districts, activeId, onSelect, onCrea
       </select>
       <button
         onClick={() => setAdding((a) => !a)}
-        className="text-xs text-paper/70 hover:text-paper underline"
+        className="text-caption text-inverse-ink-muted hover:text-inverse-ink"
       >
         {adding ? "cancel" : "+ new area"}
       </button>
@@ -34,7 +35,7 @@ export default function DistrictSwitcher({ districts, activeId, onSelect, onCrea
       {adding && (
         <form
           onSubmit={submit}
-          className="absolute top-14 left-4 z-10 bg-white border border-line rounded-lg shadow-lg p-4 flex flex-col gap-2 w-72"
+          className="absolute top-14 left-4 z-10 bg-canvas border border-hairline p-md flex flex-col gap-sm w-72"
         >
           <input
             required
@@ -57,7 +58,7 @@ export default function DistrictSwitcher({ districts, activeId, onSelect, onCrea
             onChange={(e) => setForm((f) => ({ ...f, state: e.target.value }))}
             className="input"
           />
-          <button type="submit" className="rounded-md bg-slate text-paper px-3 py-1.5 text-sm">
+          <button type="submit" className="btn-primary">
             Add area
           </button>
         </form>
