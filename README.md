@@ -12,13 +12,13 @@ Turns a flood alert into a prioritized, door-to-door warning checklist for volun
 
 **Live:** https://baadh-mitra.vercel.app/
 
-## What it tries to solve
-
-Flood forecasting systems like Google's Flood Hub can predict river levels up to seven days ahead, reaching hundreds of millions of people. But in areas without direct smartphone reach, the actual warning still depends on a volunteer going door to door, deciding by memory which house to reach first. The forecast is solved. The last mile is not.
-
 ## What this project does
 
 Baadh Mitra is a coordinator tool for that last mile. A volunteer team maps their district's households once (elevation, whether the household is elderly-only, whether anyone there owns a smartphone, mobility limitations), and every time an alert comes in, the app turns that roster into a ranked, explainable checklist rather than leaving the order to whoever is running door to door. Not affiliated with Google.
+
+## What it tries to solve
+
+Flood forecasting systems like Google's Flood Hub can predict river levels up to seven days ahead, reaching hundreds of millions of people. But in areas without direct smartphone reach, the actual warning still depends on a volunteer going door to door, deciding by memory which house to reach first. The forecast is solved. The last mile is not.
 
 ## How the ranking works
 
