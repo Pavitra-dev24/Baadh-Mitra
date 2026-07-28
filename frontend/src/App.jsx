@@ -190,7 +190,7 @@ export default function App() {
           inverts to charcoal - kept slim since there's a single disclaimer
           line rather than a multi-column marketing footer. */}
       <footer className="bg-inverse-canvas text-inverse-ink-muted text-center text-caption font-mono py-md px-lg">
-        Portfolio Project · Flood-alert data is simulated, not a live Google Flood Hub feed ·
+        Flood-alert data is simulated, not a live Google Flood Hub feed ·
         Not affiliated with Google
       </footer>
     </div>
