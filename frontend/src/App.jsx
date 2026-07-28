@@ -125,7 +125,7 @@ export default function App() {
           <div>
             <h1 className="text-subhead font-normal tracking-tight">Baadh Mitra</h1>
             <p className="text-caption text-inverse-ink-muted font-mono mt-xxs">
-              flood relay coordinator · volunteer edition
+              Flood relay coordinator · Volunteer edition
             </p>
           </div>
           {districts.length > 0 && (
@@ -190,8 +190,8 @@ export default function App() {
           inverts to charcoal - kept slim since there's a single disclaimer
           line rather than a multi-column marketing footer. */}
       <footer className="bg-inverse-canvas text-inverse-ink-muted text-center text-caption font-mono py-md px-lg">
-        Portfolio project · flood-alert data is simulated, not a live Google Flood Hub feed ·
-        not affiliated with Google
+        Portfolio Project · Flood-alert data is simulated, not a live Google Flood Hub feed ·
+        Not affiliated with Google
       </footer>
     </div>
   );
