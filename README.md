@@ -1,12 +1,11 @@
 # Baadh Mitra — Flood Relay Coordinator
 
+[![Live App](https://img.shields.io/badge/Live-App-2ea44f?style=for-the-badge)](https://baadh-mitra.vercel.app/)
 ![Python](https://img.shields.io/badge/Python-3.12-3776AB?style=flat-square&logo=python&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.115-009688?style=flat-square&logo=fastapi&logoColor=white)
 ![React](https://img.shields.io/badge/React-18-20232A?style=flat-square&logo=react&logoColor=61DAFB)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white)
-![Render](https://img.shields.io/badge/Backend-Render-000000?style=flat-square&logo=render&logoColor=46E3B7)
-![Vercel](https://img.shields.io/badge/Frontend-Vercel-000000?style=flat-square&logo=vercel&logoColor=white)
 
 Turns a flood alert into a prioritized, door-to-door warning checklist for volunteer relay teams.
 
